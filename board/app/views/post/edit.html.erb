@@ -1,0 +1,32 @@
+<h1>수정하는 페이지</h1>
+
+<form action="/post/update/<%= @post.id %>" method="get">
+<table>
+  <ul>
+      <tr>
+        <td>제목 : <input type="text" name="title" value="<%= @post.title %>"></td>
+        <td>내용 : <textarea name="content" value="<%= @post.content %>"></textarea></td>
+      </tr>
+  </ul>
+</table>
+  <input type="submit" value="수정하기">
+</form>
+
+<a href="/post/delete/<%= @post.id %>" data-method="delete">삭제하기</a>
+
+<form action="/post/comment/<%= @post.id %>">
+  <table>
+    <tr>
+      <td>댓글 : <input type="text" name="input_comment"></td>
+    </tr>
+  </table>
+  <input type="submit" value="댓글등록">
+</form>
+
+  <table>
+  <ul>
+        <% @post.comments.each do |i| %>
+          <td> <%= i.content %></td>
+        <% end %>
+  </ul>
+</table>

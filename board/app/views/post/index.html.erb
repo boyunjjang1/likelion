@@ -1,0 +1,26 @@
+<% if model_signed_in? %>
+  <%= link_to '로 그 아 웃' , '/models/sign_out', method: :delete %>
+<% else %>
+  <a href ="/models/sign_in"> 로그인</a>
+  <a href="/models/sign_up">회원가입</a>
+<% end%>
+
+
+<form action="/post/post" method="get">
+  제목 : <input type="text" name="title">
+  내용 : <textarea name="content"></textarea>
+  <input type="submit" value="글쓰기">
+</form>
+
+
+<table>
+  <ul>
+    <% @post.reverse.each do |i| %>
+      <tr>
+        <td>제목 :<a href="post/edit/<%=i.id%>"><%= i.title %></a></td>
+      </tr>
+    <% end %>
+  </ul>
+</table>
+
+<% paginate @post %>
